@@ -86,24 +86,36 @@ volumeSlider.addEventListener('input', e => {
   setVolume(e.target.value / 100);
 });
 
-// Reproducir audio de fondo con volumen inicial al cargar página
+// Reproducir audio de fondo con volumen inicial bajo al cargar página
 window.addEventListener('load', () => {
-  setVolume(0.25); // 25% volumen inicial para audio de fondo
+  setVolume(0.25); // 5%
   music.play().catch(error => {
     console.warn('Autoplay bloqueado por navegador:', error);
   });
 });
 
-// Inicializar video con volumen 0.25 y silenciado para no interferir
-video.volume = 0.25;
+// Cursor mano para título
+title.style.cursor = 'pointer';
+
+// Alternar play/pause audio fondo al hacer clic en título
+title.addEventListener('click', () => {
+  if (music.paused) {
+    music.play().catch(() => {});
+  } else {
+    music.pause();
+  }
+});
+
+// Inicializar video con volumen 0 y silenciado para no interferir
+video.volume = 0;
 video.muted = true;
 
 // Al hacer clic en video alternar sonido del video Y reproducir/pausar audio de fondo
 video.addEventListener('click', () => {
   if (video.muted) {
-    // Activar audio video con volumen 25%
+    // Activar audio video
     video.muted = false;
-    video.volume = 0.25;
+    video.volume = 1;
     video.play().catch(() => {});
 
     // Reproducir audio de fondo si está pausado
@@ -120,7 +132,6 @@ video.addEventListener('click', () => {
     music.pause();
   }
 });
-
 
 // Botón "Comenzar" SOLO redirige a la URL sin afectar audio/video
 startBtn.addEventListener('click', () => {
