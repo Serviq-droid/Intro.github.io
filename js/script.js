@@ -88,7 +88,7 @@ volumeSlider.addEventListener('input', e => {
 
 // Reproducir audio de fondo con volumen inicial 25%
 window.addEventListener('load', () => {
-  setVolume(0.25);
+  setVolume(0.05);
   music.play().catch(error => {
     console.warn('Autoplay bloqueado por navegador:', error);
   });
