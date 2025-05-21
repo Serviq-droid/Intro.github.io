@@ -25,7 +25,11 @@ class Bubble {
     this.speed = 0.5 + Math.random();
     this.angle = Math.random() * Math.PI * 2;
     this.angularSpeed = (Math.random() - 0.5) * 0.02;
-    this.color = `hsl(${Math.random() * 50 + 30}, 90%, 70%)`;
+
+    // Color entre rosa y lila suave
+    const hue = Math.random() < 0.5 ? (Math.random() * 30 + 270) : (Math.random() * 30 + 320);
+    this.color = `hsl(${hue}, 70%, 75%)`;
+
     this.alpha = 0.7 + Math.random() * 0.3;
   }
 
@@ -91,4 +95,3 @@ video.addEventListener('click', () => {
 startBtn.addEventListener('click', () => {
   window.location.href = 'https://vcruzsal.wixsite.com/my-site-2';
 });
-
