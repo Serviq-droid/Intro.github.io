@@ -88,7 +88,7 @@ volumeSlider.addEventListener('input', e => {
 
 // Reproducir audio de fondo con volumen inicial bajo al cargar página
 window.addEventListener('load', () => {
-  setVolume(0.25); // 5%
+  setVolume(0.05); // 5%
   music.play().catch(error => {
     console.warn('Autoplay bloqueado por navegador:', error);
   });
@@ -110,20 +110,30 @@ title.addEventListener('click', () => {
 video.volume = 0;
 video.muted = true;
 
-// Al hacer clic en video alternar sonido del video (no afecta audio fondo)
+// Al hacer clic en video alternar sonido del video Y reproducir/pausar audio de fondo
 video.addEventListener('click', () => {
   if (video.muted) {
+    // Activar audio video
     video.muted = false;
     video.volume = 1;
     video.play().catch(() => {});
+
+    // Reproducir audio de fondo si está pausado
+    if (music.paused) {
+      music.play().catch(() => {});
+    }
   } else {
+    // Pausar y silenciar audio video
     video.muted = true;
     video.volume = 0;
     video.pause();
+
+    // Pausar audio de fondo
+    music.pause();
   }
 });
 
-// Botón "Comenzar" SOLO redirige a la URL, no controla audio ni video
+// Botón "Comenzar" SOLO redirige a la URL sin afectar audio/video
 startBtn.addEventListener('click', () => {
   window.location.href = 'https://vcruzsal.wixsite.com/my-site-2';
 });
