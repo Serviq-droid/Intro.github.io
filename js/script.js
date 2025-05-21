@@ -65,65 +65,25 @@ function animate() {
 
 animate();
 
-// Controles audio y video
-const music = document.getElementById('bg-music');
+// Controles video
 const video = document.getElementById('video-niñas');
-const volumeSlider = document.getElementById('volume-slider');
-const volumePercentage = document.getElementById('volume-percentage');
 const title = document.querySelector('.content h1');
 const startBtn = document.getElementById('start-btn');
 
-// Inicializar volumen audio de fondo
-function setVolume(vol) {
-  if (!music) return;
-  music.volume = vol;
-  volumeSlider.value = vol * 100;
-  volumePercentage.textContent = Math.round(vol * 100) + '%';
-}
-
-// Control slider volumen audio fondo
-volumeSlider.addEventListener('input', e => {
-  setVolume(e.target.value / 100);
-});
-
-// Reproducir audio de fondo con volumen inicial 25%
-window.addEventListener('load', () => {
-  setVolume(0.05);
-  music.play().catch(error => {
-    console.warn('Autoplay bloqueado por navegador:', error);
-  });
-});
+// Quitar autoplay del video (eliminar el atributo autoplay del HTML)
+// Video inicialmente pausado y sin mute
+video.volume = 1;
+video.pause();
 
 // Cursor mano para título
 title.style.cursor = 'pointer';
 
-// Alternar play/pause audio fondo al hacer clic en título
-title.addEventListener('click', () => {
-  if (music.paused) {
-    music.play().catch(() => {});
-  } else {
-    music.pause();
-  }
-});
-
-// Inicializar video silenciado con volumen 1
-video.volume = 1;
-video.muted = true;
-
-// Al hacer clic en video, alternar mute y play/pause video Y play/pause audio de fondo
+// Al hacer clic en video, alternar play/pause
 video.addEventListener('click', () => {
-  if (video.muted) {
-    video.muted = false;
+  if (video.paused) {
     video.play().catch(() => {});
-
-    if (music.paused) {
-      music.play().catch(() => {});
-    }
   } else {
-    video.muted = true;
     video.pause();
-
-    music.pause();
   }
 });
 
@@ -131,3 +91,4 @@ video.addEventListener('click', () => {
 startBtn.addEventListener('click', () => {
   window.location.href = 'https://vcruzsal.wixsite.com/my-site-2';
 });
+
