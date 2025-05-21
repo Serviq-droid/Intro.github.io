@@ -125,5 +125,5 @@ video.addEventListener('click', () => {
 
 // Botón "Comenzar" SOLO redirige a la URL, no controla audio ni video
 startBtn.addEventListener('click', () => {
-  window.location.href = 'https://serviq-droid.github.io/ActividadIntegradora3.github.io/';
+  window.location.href = 'https://vcruzsal.wixsite.com/my-site-2';
 });
