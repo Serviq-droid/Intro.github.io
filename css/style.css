@@ -33,7 +33,7 @@ canvas#canvas {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(to bottom, #f7e9d7, #fefefe);
+    background: linear-gradient(to bottom, #fce4ec, #ede7f6); /* fondo rosado-lila suave */
 }
 
 .content {
@@ -42,10 +42,9 @@ canvas#canvas {
     padding: 20px 40px;
     max-width: 700px;
     margin: auto;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 192, 203, 0.3); /* rosa suave translúcido */
     border-radius: 25px;
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.5);
-
+    box-shadow: 0 0 30px rgba(214, 105, 146, 0.6); /* sombra rosada suave */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,13 +52,18 @@ canvas#canvas {
     height: auto;
 }
 
+/* Título con degradado rosado-lila */
 .content h1 {
     font-size: 3.5rem;
     font-weight: 900;
-    color: #d35400;
     margin-bottom: 15px;
-    text-shadow: 0 0 10px #ffa500aa;
     cursor: pointer;
+    background: linear-gradient(90deg, #d6336c, #bb85c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px #e91e63aa; /* sombra rosa/lila suave */
 }
 
 .content p {
@@ -70,25 +74,26 @@ canvas#canvas {
     text-shadow: 0 0 8px #ffbb3366;
 }
 
-/* Estilo para el video */
+/* Estilo para el video con fondo y borde degradado rosado-lila */
 #video-niñas {
     width: 100%;
     max-width: 680px;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(211, 84, 0, 0.7);
+    background: linear-gradient(135deg, #f8bbd0, #e1bee7); /* degradado rosa-lila suave */
+    box-shadow: 0 0 30px rgba(214, 105, 146, 0.8); /* sombra rosada */
     margin-bottom: 30px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #video-niñas:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(211, 84, 0, 1);
+    box-shadow: 0 0 50px rgba(214, 105, 146, 1);
 }
 
-/* Botón */
+/* Botón con degradado rosa-lila */
 button {
-    background: #f39c12;
+    background: linear-gradient(90deg, #d6336c 0%, #bb85c1 100%);
     border: none;
     padding: 16px 50px;
     font-size: 1.4rem;
@@ -96,18 +101,16 @@ button {
     color: white;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 0 25px #f39c12aa;
+    box-shadow: 0 0 25px rgba(214, 105, 146, 0.7); /* sombra rosada */
     letter-spacing: 3px;
     transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #d35400;
-    box-shadow: 0 0 45px #d35400cc;
+    background: linear-gradient(90deg, #bb85c1 0%, #d6336c 100%);
+    box-shadow: 0 0 45px rgba(214, 105, 146, 1);
     transform: scale(1.1);
 }
-
-
 
 /* Estilos slider horizontal */
 #volume-slider {
@@ -121,4 +124,3 @@ button:hover {
     box-shadow: 0 0 10px #ff6f00aa;
     transition: box-shadow 0.3s ease;
 }
-
