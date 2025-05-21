@@ -1,4 +1,4 @@
-// Configuración canvas y animación de burbujas (tu código original)
+// Configuración canvas y animación de burbujas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -65,7 +65,7 @@ function animate() {
 
 animate();
 
-// Control de música y volumen
+// Controles audio y video
 const music = document.getElementById('bg-music');
 const video = document.getElementById('video-niñas');
 const volumeSlider = document.getElementById('volume-slider');
@@ -86,9 +86,9 @@ volumeSlider.addEventListener('input', e => {
   setVolume(e.target.value / 100);
 });
 
-// Reproducir audio de fondo con volumen inicial bajo al cargar página
+// Reproducir audio de fondo con volumen inicial 25%
 window.addEventListener('load', () => {
-  setVolume(0.25); // 5%
+  setVolume(0.25);
   music.play().catch(error => {
     console.warn('Autoplay bloqueado por navegador:', error);
   });
@@ -106,34 +106,28 @@ title.addEventListener('click', () => {
   }
 });
 
-// Inicializar video con volumen 0 y silenciado para no interferir
-video.volume = 0;
+// Inicializar video silenciado con volumen 1
+video.volume = 1;
 video.muted = true;
 
-// Al hacer clic en video alternar sonido del video Y reproducir/pausar audio de fondo
+// Al hacer clic en video, alternar mute y play/pause video Y play/pause audio de fondo
 video.addEventListener('click', () => {
   if (video.muted) {
-    // Activar audio video
     video.muted = false;
-    video.volume = 1;
     video.play().catch(() => {});
 
-    // Reproducir audio de fondo si está pausado
     if (music.paused) {
       music.play().catch(() => {});
     }
   } else {
-    // Pausar y silenciar audio video
     video.muted = true;
-    video.volume = 0;
     video.pause();
 
-    // Pausar audio de fondo
     music.pause();
   }
 });
 
-// Botón "Comenzar" SOLO redirige a la URL sin afectar audio/video
+// Botón "Comenzar" solo redirige a la URL indicada
 startBtn.addEventListener('click', () => {
   window.location.href = 'https://vcruzsal.wixsite.com/my-site-2';
 });
