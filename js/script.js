@@ -73,7 +73,7 @@ const volumePercentage = document.getElementById('volume-percentage');
 const title = document.querySelector('.content h1');
 const startBtn = document.getElementById('start-btn');
 
-// Inicializar volumen del audio de fondo
+// Inicializar volumen audio de fondo
 function setVolume(vol) {
   if (!music) return;
   music.volume = vol;
@@ -81,14 +81,14 @@ function setVolume(vol) {
   volumePercentage.textContent = Math.round(vol * 100) + '%';
 }
 
-// Control slider de volumen audio de fondo
+// Control slider volumen audio fondo
 volumeSlider.addEventListener('input', e => {
   setVolume(e.target.value / 100);
 });
 
-// Reproducir audio de fondo con volumen bajo al cargar página
+// Reproducir audio de fondo con volumen inicial bajo al cargar página
 window.addEventListener('load', () => {
-  setVolume(0.25); // volumen inicial 25%
+  setVolume(0.05); // 5%
   music.play().catch(error => {
     console.warn('Autoplay bloqueado por navegador:', error);
   });
@@ -97,22 +97,20 @@ window.addEventListener('load', () => {
 // Cursor mano para título
 title.style.cursor = 'pointer';
 
-// Alternar play/pause audio de fondo al hacer click en título
+// Alternar play/pause audio fondo al hacer clic en título
 title.addEventListener('click', () => {
   if (music.paused) {
-    music.play().catch(error => {
-      console.warn('No se pudo reproducir el audio:', error);
-    });
+    music.play().catch(() => {});
   } else {
     music.pause();
   }
 });
 
-// Inicializar video con volumen 0 y muted true (silenciado)
+// Inicializar video con volumen 0 y silenciado para no interferir
 video.volume = 0;
 video.muted = true;
 
-// Al hacer click en el video, alternar sonido del video sin afectar audio de fondo
+// Al hacer clic en video alternar sonido del video (no afecta audio fondo)
 video.addEventListener('click', () => {
   if (video.muted) {
     video.muted = false;
@@ -125,14 +123,7 @@ video.addEventListener('click', () => {
   }
 });
 
-// Botón "Comenzar" reproduce ambos (audio de fondo y video), video sin mute
+// Botón "Comenzar" SOLO redirige a la URL, no controla audio ni video
 startBtn.addEventListener('click', () => {
-  music.play().catch(error => {
-    console.warn('No se pudo reproducir el audio:', error);
-  });
-  video.muted = false;
-  video.volume = 1;
-  video.play().catch(error => {
-    console.warn('No se pudo reproducir el video:', error);
-  });
+  window.location.href = 'https://serviq-droid.github.io/ActividadIntegradora3.github.io/';
 });
